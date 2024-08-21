@@ -6,7 +6,13 @@
       "reference": "Tài liệu tham khảo",
       "done": "Đã hoàn thành",
       "markAsDone": "Đánh dấu đã hoàn thành",
-      "unmarkAsDone": "Bỏ đánh dấu đã hoàn thành"
-    }
+      "unmarkAsDone": "Bỏ đánh dấu đã hoàn thành",
+      "title": "Tiêu đề",
+      "file": "Tệp",
+      "study_time": "Thời lượng học"
+    },
+    "create": "Tạo bài giảng",
+    "edit": "Sửa bài giảng",
+    "backToCourseManagement": "Quay lại trang quản lý khoá học"
   }
 }
