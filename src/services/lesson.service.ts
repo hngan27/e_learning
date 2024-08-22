@@ -2,6 +2,7 @@ import { StudentLesson } from '../entity/student_lesson.entity';
 import { AppDataSource } from '../config/data-source';
 import { Lesson } from '../entity/lesson.entity';
 import { Course } from '../entity/course.entity';
+import { formatDateTime } from '../helpers/date.helper';
 
 const lessonRepository = AppDataSource.getRepository(Lesson);
 const studentLessonRepository = AppDataSource.getRepository(StudentLesson);
@@ -22,6 +23,23 @@ export const getLessonList = async (userId: string, courseId: string) => {
     };
   });
   return lessonsWithDoneStatus;
+};
+
+export const getLessonListAdmin = async (courseId: string) => {
+  const lessons = await lessonRepository.find({
+    relations: ['courses', 'studentLessons', 'studentLessons.student'],
+    where: { courses: { id: courseId } },
+    order: {
+      study_time: 'ASC',
+    },
+  });
+  const lessonsWithFormat = lessons.map(lesson => {
+    return {
+      ...lesson,
+      studyTime: formatDateTime(lesson.study_time),
+    };
+  });
+  return lessonsWithFormat;
 };
 
 export const getLessonById = async (id: string) =>

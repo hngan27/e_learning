@@ -9,7 +9,8 @@
       "unmarkAsDone": "Bỏ đánh dấu đã hoàn thành",
       "title": "Tiêu đề",
       "file": "Tệp",
-      "study_time": "Thời lượng học"
+      "study_time": "Thời lượng học",
+      "student_done": "Sinh viên đã hoàn thành"
     },
     "create": "Tạo bài giảng",
     "edit": "Sửa bài giảng",
