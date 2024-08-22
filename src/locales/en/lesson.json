@@ -9,7 +9,8 @@
       "unmarkAsDone": "Unmark done",
       "title": "Title",
       "file": "File",
-      "study_time": "Study time"
+      "study_time": "Study time",
+      "student_done": "Student done"
     },
     "create": "Create lesson",
     "edit": "Edit lesson",
