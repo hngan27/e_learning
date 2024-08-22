@@ -1,6 +1,7 @@
 import { StudentLesson } from '../entity/student_lesson.entity';
 import { AppDataSource } from '../config/data-source';
 import { Lesson } from '../entity/lesson.entity';
+import { Course } from '../entity/course.entity';
 
 const lessonRepository = AppDataSource.getRepository(Lesson);
 const studentLessonRepository = AppDataSource.getRepository(StudentLesson);
@@ -47,4 +48,44 @@ export const markDoneLesson = async (id: string) => {
   studentLesson.done = !studentLesson.done;
   await studentLessonRepository.save(studentLesson);
   return studentLesson;
+};
+
+export const createLesson = async (
+  course: Course,
+  title: string,
+  content: string,
+  file_url: string,
+  study_time: Date
+) => {
+  const lesson = new Lesson({
+    title,
+    content,
+    file_url,
+    courses: [course],
+    study_time,
+  });
+  return await lessonRepository.save(lesson);
+};
+
+export const updateLessonById = async (
+  lessonId: string,
+  courses: Course[],
+  title?: string,
+  content?: string,
+  file_url?: string,
+  study_time?: Date,
+  studentLessons?: StudentLesson[]
+) => {
+  const lesson = await getLessonById(lessonId);
+  if (!lesson) return;
+  const lessonUpdate = new Lesson({
+    title,
+    content,
+    file_url,
+    courses,
+    studentLessons,
+    study_time,
+  });
+  Object.assign(lesson, lessonUpdate);
+  return await lessonRepository.save(lesson);
 };
